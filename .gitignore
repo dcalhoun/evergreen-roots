@@ -3,5 +3,6 @@
 .merlin
 .next
 bs
+env-config.js
 lib
 node_modules
