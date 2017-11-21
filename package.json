@@ -1,0 +1,25 @@
+{
+  "name": "evergreen-roots",
+  "version": "0.0.1",
+  "description": "Beautiful, functional items sewn and stamped by hand.",
+  "main": "index.js",
+  "repository": "git@github.com:dcalhoun/evergreen-roots.git",
+  "author": "David Calhoun <dpcalhoun@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "format": "pretter --write '**/*.{md,js,json}'",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^4.1.4",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "reason-react": "^0.3.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.8.2"
+  }
+}

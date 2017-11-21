@@ -1,0 +1,7 @@
+*.log
+.DS_Store
+.merlin
+.next
+bs
+lib
+node_modules
