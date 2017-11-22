@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { fetchListings } from '../utils/endpoints';
+// import { fetchListings } from '../utils/endpoints';
 import { Component } from 'react';
 
 class EtsyListings extends Component {
@@ -8,21 +8,21 @@ class EtsyListings extends Component {
     this.state = {
       error: '',
       isFetching: false,
-      items: [],
+      items: this.props.items,
     };
   }
 
-  componentDidMount() {
-    fetchListings()
-      .then(
-        res => res.json(),
-        () => this.setState({ error: 'Error loading Etsy listings.' })
-      )
-      .then(
-        ({ results }) => this.setState({ items: results }),
-        () => this.setState({ error: 'Error parsing Etsy listings.' })
-      );
-  }
+  // componentDidMount() {
+  //   fetchListings()
+  //     .then(
+  //       res => res.json(),
+  //       () => this.setState({ error: 'Error loading Etsy listings.' })
+  //     )
+  //     .then(
+  //       ({ results }) => this.setState({ items: results }),
+  //       () => this.setState({ error: 'Error parsing Etsy listings.' })
+  //     );
+  // }
 
   render() {
     return this.props.children({
@@ -35,6 +35,7 @@ class EtsyListings extends Component {
 
 EtsyListings.propTypes = {
   children: PropTypes.func,
+  items: PropTypes.array,
 };
 
 export default EtsyListings;

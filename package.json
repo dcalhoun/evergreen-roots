@@ -8,13 +8,16 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
     "format": "pretter --write '**/*.{md,js,json}'",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "fetch-jsonp": "^1.1.3",
+    "isomorphic-unfetch": "^2.0.0",
+    "koa": "^2.4.1",
+    "koa-router": "^7.3.0",
     "next": "^4.1.4",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",

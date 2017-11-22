@@ -1,8 +1,5 @@
-import fetchJsonp from 'fetch-jsonp';
+import fetch from 'isomorphic-unfetch';
 
-export const fetchListings = () =>
-  fetchJsonp(
-    `https://openapi.etsy.com/v2/shops/EvergreenRoots/listings/active.js?api_key=${
-      __ENV__.etsyApiKey
-    }`
-  );
+export const fetchListings = async () => {
+  return fetch(`${__ENV__.host}/api/listings`);
+};

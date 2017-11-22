@@ -4,5 +4,6 @@ module.exports = {
   __DEV__: !prod,
   __ENV__: {
     etsyApiKey: '',
+    host: prod ? 'https://evergreenroots.com' : 'http://localhost:3000',
   },
 };
