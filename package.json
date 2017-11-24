@@ -8,7 +8,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "buckle": "bsb --clean-world -make-world -w",
+    "buckle": "bsb -make-world -w",
+    "clean": "bsb -clean-world",
     "dev": "node server.js",
     "build": "next build",
     "prebuild": "yarn buckle",
@@ -16,6 +17,8 @@
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
+    "bs-next": "^1.1.0",
+    "bs-platform": "^2.1.0",
     "fetch-jsonp": "^1.1.3",
     "isomorphic-unfetch": "^2.0.0",
     "koa": "^2.4.1",
@@ -30,7 +33,6 @@
     "babel-plugin-bucklescript": "^0.2.4",
     "babel-plugin-inline-dotenv": "^1.1.1",
     "babel-plugin-transform-inline-environment-variables": "^0.2.0",
-    "bs-platform": "^2.1.0",
     "eslint": "^4.11.0",
     "eslint-config-prettier": "^2.8.0",
     "eslint-config-standard": "^10.2.1",
