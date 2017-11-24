@@ -14,5 +14,5 @@ TBD
 ## Todo
 
 * [ ] Deploy test to https://now.sh.
-* [ ] Prevent Etsy fetch (i.e. `getIntialData`) from delaying client-side
+* [ ] Prevent Etsy fetch (i.e. `getInitialData`) from delaying client-side
       routing to index through caching or lazy-loading of data.
