@@ -1,7 +1,7 @@
 import Koa from 'koa';
 import Router from 'koa-router';
-import { fetchListings } from './api/listings';
 import next from 'next';
+import { fetchListings } from './api/listings';
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';

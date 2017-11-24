@@ -1,6 +1,6 @@
-import ErrorMessage from '../components/ErrorMessage';
-import EtsyListings from '../containers/EtsyListings';
+import About from '../components/About';
 import Head from 'next/head';
+import Link from 'next/link';
 import Listings from '../components/Listings';
 import Loading from '../components/Loading';
 import PropTypes from 'prop-types';
@@ -24,18 +24,12 @@ class Index extends Component {
             content="initial-scale=1.0, width=device-width"
           />
         </Head>
-        {/* TODO: Lose EtsyListings altogether now that it's server rendered? */}
-        <EtsyListings items={this.props.items}>
-          {({ error, isFetching, items }) =>
-            error ? (
-              <ErrorMessage title={error} />
-            ) : isFetching ? (
-              <Loading />
-            ) : (
-              <Listings items={items} />
-            )
-          }
-        </EtsyListings>
+        <span>Home</span> |{' '}
+        <Link href="/contact" prefetch>
+          <a>Contact</a>
+        </Link>
+        <About />
+        {this.props.items ? <Listings items={this.props.items} /> : <Loading />}
       </div>
     );
   }
