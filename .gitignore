@@ -1,8 +1,9 @@
 *.log
 .DS_Store
+.env*
+!.env.dist
 .merlin
 .next
 bs
-env-config.js
 lib
 node_modules

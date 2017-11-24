@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-unfetch';
 
-export const fetchListings = async () => {
-  return fetch(`${__ENV__.host}/api/listings`);
-};
+export const fetchListings = async () =>
+  fetch(`${process.env.HOST}/api/listings`);
