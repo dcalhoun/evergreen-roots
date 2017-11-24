@@ -1,6 +1,6 @@
-const fetch = require('isomorphic-unfetch');
+import fetch from 'isomorphic-unfetch';
 
-exports.fetchListings = async ctx => {
+export const fetchListings = async ctx => {
   const resp = await fetch(
     `https://openapi.etsy.com/v2/shops/EvergreenRoots/listings/active?api_key=${
       process.env.ETSY_API_KEY
