@@ -8,8 +8,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "buckle": "bsb --clean-world -make-world -w",
     "dev": "node server.js",
     "build": "next build",
+    "prebuild": "yarn buckle",
     "format": "pretter --write '**/*.{md,js,json}'",
     "start": "NODE_ENV=production node server.js"
   },
@@ -25,8 +27,10 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.0.2",
+    "babel-plugin-bucklescript": "^0.2.4",
     "babel-plugin-inline-dotenv": "^1.1.1",
     "babel-plugin-transform-inline-environment-variables": "^0.2.0",
+    "bs-platform": "^2.1.0",
     "eslint": "^4.11.0",
     "eslint-config-prettier": "^2.8.0",
     "eslint-config-standard": "^10.2.1",
