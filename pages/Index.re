@@ -1,12 +1,6 @@
 let str = ReasonReact.stringToElement;
 
-type item = {
-  listing_id: int,
-  price: int,
-  title: string
-};
-
-type items = list(item);
+type state = {items: Listings.items};
 
 let component = ReasonReact.reducerComponent("Index");
 
