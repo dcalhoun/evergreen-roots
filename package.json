@@ -17,6 +17,7 @@
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
+    "bs-fetch": "^0.2.0",
     "bs-next": "^1.1.0",
     "bs-platform": "^2.1.0",
     "fetch-jsonp": "^1.1.3",
