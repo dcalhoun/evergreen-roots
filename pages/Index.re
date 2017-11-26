@@ -1,28 +1,28 @@
 let str = ReasonReact.stringToElement;
 
-type state = {items: Listings.items};
+let component = ReasonReact.statelessComponent("Index");
 
-let component = ReasonReact.reducerComponent("Index");
-
-let make = (_children) => {
-  let getInitialProps = () =>
-    Js.Promise.(
-      Endpoints.fetchListings()
-      |> then_(Fetch.Response.json)
-      |> then_((json) => {items: json##results})
-      |> resolve
-    );
-  {
-    ...component,
-    reducer: ((), _) => ReasonReact.NoUpdate,
-    render: ({state: {items}}) =>
-      <div>
-        <span> (str("Home")) </span>
-        <About />
-        (List.length(items) > 0 ? <Listings items /> : <Loading />)
-      </div>
-  }
+let make = (~items: Listings.items, _children) => {
+  ...component,
+  render: (_self) =>
+    <div>
+      <Next.Head> <title> (str("Evergreen Roots")) </title> </Next.Head>
+      <span> (str("Home | ")) </span>
+      <Next.Link href="/contact"> <a> (str("Contact")) </a> </Next.Link>
+      <About />
+      (List.length(items) > 0 ? <Listings items /> : <Loading />)
+    </div>
 };
 
-let jsComponent =
-  ReasonReact.wrapReasonForJs(~component, (_jsProps) => make([||]));
+/* TODO: How do I incorporate this into ReasonReact? */
+/* let getInitialProps = () =>
+   Js.Promise.(
+     Endpoints.fetchListings()
+     |> then_(Fetch.Response.json)
+     |> then_((json) => Js.Json.decodeArray(json) |> resolve)
+   ); */
+let default =
+  ReasonReact.wrapReasonForJs(
+    ~component,
+    (jsProps) => make(~items=jsProps##items, [||])
+  );

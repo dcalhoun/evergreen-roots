@@ -1232,6 +1232,13 @@ bs-next@^1.1.0:
     next "^3.0.6"
     reason-react "^0.2.3"
 
+"bs-next@https://github.com/dcalhoun/bs-next.git":
+  version "1.1.0"
+  resolved "https://github.com/dcalhoun/bs-next.git#b626ae95ec0abb4c154367aa522d5cd12a9ecb89"
+  dependencies:
+    next "^4.1.4"
+    reason-react "^0.3.0"
+
 bs-platform@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-2.1.0.tgz#63560ff8f7142c9c0631559df1c35590b9f6d8b2"
