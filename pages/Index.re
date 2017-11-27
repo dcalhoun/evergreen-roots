@@ -15,12 +15,13 @@ let make = (~items: Listings.items, _children) => {
 };
 
 /* TODO: How do I incorporate this into ReasonReact? */
-/* let getInitialProps = () =>
-   Js.Promise.(
-     Endpoints.fetchListings()
-     |> then_(Fetch.Response.json)
-     |> then_((json) => Js.Json.decodeArray(json) |> resolve)
-   ); */
+let getInitialProps = () =>
+  Js.Promise.(
+    Endpoints.fetchListings()
+    |> then_(Fetch.Response.json)
+    |> then_((json) => Js.Json.decodeArray(json) |> resolve)
+  );
+
 let default =
   ReasonReact.wrapReasonForJs(
     ~component,
