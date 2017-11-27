@@ -4,6 +4,9 @@ let component = ReasonReact.statelessComponent("Index");
 
 let make = (~items: Listings.items, _children) => {
   ...component,
+  didMount: (_self) => [%bs.raw {|
+  console.log('=>', items)
+|}],
   render: (_self) =>
     <div>
       <Next.Head> <title> (str("Evergreen Roots")) </title> </Next.Head>
@@ -14,16 +17,9 @@ let make = (~items: Listings.items, _children) => {
     </div>
 };
 
-/* TODO: How do I incorporate this into ReasonReact? */
-let getInitialProps = () =>
-  Js.Promise.(
-    Endpoints.fetchListings()
-    |> then_(Fetch.Response.json)
-    |> then_((json) => Js.Json.decodeArray(json) |> resolve)
-  );
-
+/* TODO: How should I convert JS array of items into Listings.items? */
 let default =
   ReasonReact.wrapReasonForJs(
     ~component,
-    (jsProps) => make(~items=jsProps##items, [||])
+    (jsProps) => make(~items=Array.to_list(jsProps##items), [||])
   );
