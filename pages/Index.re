@@ -1,14 +1,14 @@
 let str = ReasonReact.stringToElement;
 
-let decodeItems = (json: Listings.items) =>
-  Json.Decode.{
-    /* TODO: How do I use a type from a different file? */
-    listing_id: json |> field("listing_id", int),
-    price: json |> field("price", int),
-    title: json |> field("title", string)
-  };
-
-let yep = (json) => decodeItems(Js.Json.parseExn(json));
+module Decode = {
+  let item = (json) =>
+    Json.Decode.{
+      Listing.listing_id: json |> field("listing_id", int),
+      Listing.price: json |> field("price", string),
+      Listing.title: json |> field("title", string)
+    };
+  let items = (json) => Json.Decode.(json |> array(item));
+};
 
 let component = ReasonReact.statelessComponent("Index");
 
@@ -27,5 +27,5 @@ let make = (~items: Listings.items, _children) => {
 let default =
   ReasonReact.wrapReasonForJs(
     ~component,
-    (jsProps) => make(~items=yep(jsProps##items), [||])
+    (jsProps) => make(~items=jsProps##items |> Decode.items, [||])
   );

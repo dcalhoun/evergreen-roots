@@ -2,7 +2,7 @@ let str = ReasonReact.stringToElement;
 
 type item = {
   listing_id: int,
-  price: int,
+  price: string,
   title: string
 };
 
@@ -13,6 +13,6 @@ let make = (~item: item, _children) => {
   render: (_self) =>
     <article>
       <h3> (ReasonReact.stringToElement(item.title)) </h3>
-      <h4> (ReasonReact.stringToElement(string_of_int(item.price))) </h4>
+      <h4> (ReasonReact.stringToElement(item.price)) </h4>
     </article>
 };
