@@ -12,20 +12,27 @@ module Decode = {
 
 let component = ReasonReact.statelessComponent("Index");
 
-let make = (~items: Listings.items, _children) => {
+let make = (~items: Listings.items, ~status: string, _children) => {
   ...component,
-  render: (_self) =>
+  render: (_self) => {
+    let listings = status == "IDLE" ? <Loading /> : <Listings items />;
     <div>
       <Next.Head> <title> (str("Evergreen Roots")) </title> </Next.Head>
       <span> (str("Home | ")) </span>
       <Next.Link href="/contact"> <a> (str("Contact")) </a> </Next.Link>
       <About />
-      (Array.length(items) > 0 ? <Listings items /> : <Loading />)
+      listings
     </div>
+  }
 };
 
 let default =
   ReasonReact.wrapReasonForJs(
     ~component,
-    (jsProps) => make(~items=jsProps##items |> Decode.items, [||])
+    (jsProps) =>
+      make(
+        ~status=jsProps##status,
+        ~items=jsProps##items |> Decode.items,
+        [||]
+      )
   );
