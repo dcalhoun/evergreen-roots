@@ -10,20 +10,38 @@ module Decode = {
   let items = (json) => Json.Decode.(json |> array(item));
 };
 
-let component = ReasonReact.statelessComponent("Index");
+type action =
+  | SetListings(Listings.items);
+
+type state = {
+  status: string,
+  items: Listings.items
+};
+
+let component = ReasonReact.reducerComponent("Index");
 
 let make = (~items: Listings.items, ~status: string, _children) => {
   ...component,
-  render: (_self) => {
-    let listings = status == "IDLE" ? <Loading /> : <Listings items />;
+  initialState: () => {status, items},
+  reducer: (action, state) =>
+    switch action {
+    | SetListings(items) => ReasonReact.Update({...state, items})
+    },
+  didMount: (self) => {
+    self.reduce((items) => SetListings(items), items);
+    ReasonReact.NoUpdate
+  },
+  render: (self) =>
     <div>
       <Next.Head> <title> (str("Evergreen Roots")) </title> </Next.Head>
       <span> (str("Home | ")) </span>
       <Next.Link href="/contact"> <a> (str("Contact")) </a> </Next.Link>
       <About />
-      listings
+      (
+        self.state.status == Status.idle ?
+          <Loading /> : <Listings items=self.state.items />
+      )
     </div>
-  }
 };
 
 let default =
