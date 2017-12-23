@@ -6,13 +6,7 @@ type item = {
   title: string
 };
 
-module Option = {
-  let unwrapUnsafely = (data) =>
-    switch data {
-    | Some(v) => v
-    | None => raise(Invalid_argument("unwrapUnsafely called on None"))
-    };
-};
+type items = array(item);
 
 module Decode = {
   let item = (json) =>

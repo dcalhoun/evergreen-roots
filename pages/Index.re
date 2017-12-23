@@ -1,17 +1,17 @@
 let str = ReasonReact.stringToElement;
 
 type action =
-  | Loaded(Listings.items)
+  | Loaded(ListingData.items)
   | Loading;
 
 type state = {
   status: string,
-  items: Listings.items
+  items: ListingData.items
 };
 
 let component = ReasonReact.reducerComponent("Index");
 
-let make = (~items: Listings.items, ~status: string, _children) => {
+let make = (~items: ListingData.items, ~status: string, _children) => {
   let loadListings = ({ReasonReact.reduce}) => {
     ListingData.fetch(reduce((payload) => Loaded(payload))) |> ignore;
     reduce((_items) => Loading, items)
