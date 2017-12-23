@@ -12,7 +12,7 @@ type state = {
 let component = ReasonReact.reducerComponent("Index");
 
 let make = (~items: Listings.items, ~status: string, _children) => {
-  let loadListings = (reduce) => {
+  let loadListings = ({ReasonReact.reduce}) => {
     ListingData.fetch(reduce((payload) => Loaded(payload))) |> ignore;
     reduce((_items) => Loading, items)
   };
@@ -24,9 +24,9 @@ let make = (~items: Listings.items, ~status: string, _children) => {
       | Loaded(items) => ReasonReact.Update({...state, items})
       | Loading => ReasonReact.Update({...state, status: Status.fetched})
       },
-    didMount: ({reduce}) => {
-      reduce((items) => Loaded(items), items);
-      loadListings(reduce);
+    didMount: (self) => {
+      self.reduce((items) => Loaded(items), items);
+      loadListings(self);
       ReasonReact.NoUpdate
     },
     render: (self) =>

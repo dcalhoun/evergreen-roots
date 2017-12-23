@@ -4,6 +4,14 @@ type item = {
   title: string
 };
 
+module Option = {
+  let unwrapUnsafely = (data) =>
+    switch data {
+    | Some(v) => v
+    | None => raise(Invalid_argument("unwrapUnsafely called on None"))
+    };
+};
+
 module Decode = {
   let item = (json) =>
     Json.Decode.{
@@ -11,17 +19,19 @@ module Decode = {
       price: json |> field("price", string),
       title: json |> field("title", string)
     };
-  let items = (json) => Json.Decode.(json |> array(item));
+  let items = (items) => Json.Decode.(items |> array(item));
+  /* How do unwrap results key? */
+  let resp = (json) => Json.Decode.(json |> field("results"));
 };
 
-/* Why can I not desctructure? */
 let fetch = (callback) =>
   Js.Promise.(
     Fetch.fetch("http://localhost:3000/api/listings")
     |> then_(Fetch.Response.json)
     |> then_(
-         ({results}) =>
-           results
+         (json) =>
+           json
+           |> Decode.resp
            |> Decode.items
            |> (
              (items) => {
