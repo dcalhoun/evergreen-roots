@@ -1,3 +1,5 @@
+[@bs.val] external host : string = "process.env.HOST";
+
 type item = {
   listing_id: int,
   price: string,
@@ -26,7 +28,7 @@ module Decode = {
 
 let fetch = (callback) =>
   Js.Promise.(
-    Fetch.fetch("http://localhost:3000/api/listings")
+    Fetch.fetch(host ++ "/api/listings")
     |> then_(Fetch.Response.json)
     |> then_(
          (json) =>
@@ -40,5 +42,5 @@ let fetch = (callback) =>
              }
            )
        )
-    |> ignore
+    |> ignore /* TODO: Error handling */
   );
