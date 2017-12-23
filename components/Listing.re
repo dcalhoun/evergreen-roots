@@ -1,14 +1,8 @@
 let str = ReasonReact.stringToElement;
 
-type item = {
-  listing_id: int,
-  price: string,
-  title: string
-};
-
 let component = ReasonReact.statelessComponent("Listing");
 
-let make = (~item: item, _children) => {
+let make = (~item: ListingData.item, _children) => {
   ...component,
   render: (_self) =>
     <article>
