@@ -22,8 +22,7 @@ module Decode = {
       title: json |> field("title", string)
     };
   let items = (items) => Json.Decode.(items |> array(item));
-  /* How do unwrap results key? */
-  let resp = (json) => Json.Decode.(json |> field("results"));
+  let resp = (json) => Json.Decode.(json |> field("results", array(item)));
 };
 
 let fetch = (callback) =>
@@ -34,7 +33,6 @@ let fetch = (callback) =>
          (json) =>
            json
            |> Decode.resp
-           |> Decode.items
            |> (
              (items) => {
                callback(items);
