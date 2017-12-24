@@ -13,7 +13,9 @@ let make = (_children) => {
           content="initial-scale=1.0, width=device-width"
         />
       </Next.Head>
-      <Next.Link href="/"> <a> (str("Home")) </a> </Next.Link>
+      <Next.Link href="/" prefetch=(Js.Boolean.to_js_boolean(true))>
+        <a> (str("Home")) </a>
+      </Next.Link>
       <span> (str(" | Contact")) </span>
       <div> (str("Contact")) </div>
       <p>

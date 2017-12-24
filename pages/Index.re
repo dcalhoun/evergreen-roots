@@ -33,7 +33,9 @@ let make = (~items: ListingData.items, ~status: string, _children) => {
       <div>
         <Next.Head> <title> (str("Evergreen Roots")) </title> </Next.Head>
         <span> (str("Home | ")) </span>
-        <Next.Link href="/contact"> <a> (str("Contact")) </a> </Next.Link>
+        <Next.Link href="/contact" prefetch=(Js.Boolean.to_js_boolean(true))>
+          <a> (str("Contact")) </a>
+        </Next.Link>
         <About />
         (
           self.state.status == Status.fetching ?
