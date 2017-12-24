@@ -1,28 +1,6 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import React, { Component } from 'react';
+import React from 'react';
+import Contact from './Contact.re';
 
-class Contact extends Component {
-  render() {
-    return (
-      <div>
-        <Head>
-          <title>Contact - Evergreen Roots</title>
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
-        </Head>
-        <Link href="/" prefetch>
-          <a>Home</a>
-        </Link>{' '}
-        | <span>Contact</span>
-        <div>Contact</div>
-      </div>
-    );
-  }
-}
+const ContactPage = () => <Contact />;
 
-Contact.displayName = 'Contact';
-
-export default Contact;
+export default ContactPage;

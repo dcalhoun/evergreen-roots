@@ -1,5 +1,6 @@
 *.log
 .DS_Store
+.bsb.lock
 .env*
 !.env.dist
 .merlin

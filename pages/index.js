@@ -1,44 +1,31 @@
-import About from '../components/About';
-import Head from 'next/head';
-import Link from 'next/link';
-import Listings from '../components/Listings';
-import Loading from '../components/Loading';
+import Index from './Index.re';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import * as status from '../lib/js/utils/Status';
 import { fetchListings } from '../utils/endpoints';
 
-class Index extends Component {
+export default class IndexPage extends Component {
   static async getInitialProps() {
-    const resp = await fetchListings();
-    const json = await resp.json();
-    return { items: json.results };
+    if (typeof window === 'undefined') {
+      const resp = await fetchListings();
+      const json = await resp.json();
+      return {
+        status: status.fetched,
+        items: json.results,
+      };
+    }
+    return {
+      status: status.idle,
+      items: [],
+    };
   }
 
   render() {
-    return (
-      <div>
-        <Head>
-          <title>Evergreen Roots</title>
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
-        </Head>
-        <span>Home</span> |{' '}
-        <Link href="/contact" prefetch>
-          <a>Contact</a>
-        </Link>
-        <About />
-        {this.props.items ? <Listings items={this.props.items} /> : <Loading />}
-      </div>
-    );
+    return <Index status={this.props.status} items={this.props.items} />;
   }
 }
 
-Index.displayName = 'Index';
-
-Index.propTypes = {
+IndexPage.propTypes = {
+  status: PropTypes.string,
   items: PropTypes.array,
 };
-
-export default Index;

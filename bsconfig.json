@@ -1,0 +1,9 @@
+{
+  "name": "evergreen-roots",
+  "sources": ["api", "components", "pages", "utils"],
+  "bs-dependencies": ["bs-fetch", "bs-json", "reason-react", "bs-next"],
+  "reason": { "react-jsx": 2 },
+  "refmt": 3,
+  "package-specs": ["commonjs"],
+  "bsc-flags": ["-bs-super-errors"]
+}
