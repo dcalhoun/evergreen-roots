@@ -21,13 +21,12 @@ let make = (~items: ListingData.items, ~status: string, _children) => {
     initialState: () => {status, items},
     reducer: (action, state) =>
       switch action {
-      | Loaded(items) =>
-        ReasonReact.Update({...state, items, status: Status.fetched})
+      | Loaded(items) => ReasonReact.Update({items, status: Status.fetched})
       | Loading => ReasonReact.Update({...state, status: Status.fetching})
       },
     didMount: (self) => {
-      self.reduce((items) => Loaded(items), items);
-      loadListings(self);
+      Array.length(items) > 0 ?
+        self.reduce((items) => Loaded(items), items) : loadListings(self);
       ReasonReact.NoUpdate
     },
     render: (self) =>
