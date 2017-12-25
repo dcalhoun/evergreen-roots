@@ -1,5 +1,3 @@
-let str = ReasonReact.stringToElement;
-
 let component = ReasonReact.statelessComponent("Button");
 
 let make = (~_type="button", ~onClick=() => (), children) => {

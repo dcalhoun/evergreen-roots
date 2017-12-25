@@ -1,5 +1,3 @@
-let str = ReasonReact.stringToElement;
-
 let component = ReasonReact.statelessComponent("Listings");
 
 let make = (~items: ListingData.items, _children) => {

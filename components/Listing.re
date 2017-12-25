@@ -6,7 +6,7 @@ let make = (~item: ListingData.item, _children) => {
   ...component,
   render: (_self) =>
     <article>
-      <h3> (ReasonReact.stringToElement(item.title)) </h3>
-      <h4> (ReasonReact.stringToElement(item.price)) </h4>
+      <h3> (str(item.title)) </h3>
+      <h4> (str(item.price)) </h4>
     </article>
 };
