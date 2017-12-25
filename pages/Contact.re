@@ -4,6 +4,7 @@ let component = ReasonReact.statelessComponent("Contact");
 
 let make = (_children) => {
   let handleSubmit = (_) => Js.log("handleSubmit");
+  let sBody = ReactDOMRe.Style.make(~fontFamily="sans-serif", ());
   {
     ...component,
     render: (_self) =>
@@ -15,7 +16,7 @@ let make = (_children) => {
             content="initial-scale=1.0, width=device-width"
           />
         </Next.Head>
-        <p>
+        <p style=sBody>
           (
             str(
               "I love to hear from my customers. Please contact me using this form with any questions or comments. Wholesale inquires are welcomed."

@@ -7,8 +7,8 @@ let make = (_children) => {
   {
     ...component,
     render: (_self) =>
-      <div style=sBody>
+      <p style=sBody>
         (str("Beautiful, functional items sewn and stamped by hand."))
-      </div>
+      </p>
   }
 };
