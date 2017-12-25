@@ -32,10 +32,7 @@ let make = (~items: ListingData.items, ~status: string, _children) => {
     render: (self) =>
       <div>
         <Next.Head> <title> (str("Evergreen Roots")) </title> </Next.Head>
-        <span> (str("Home | ")) </span>
-        <Next.Link href="/contact" prefetch=(Js.Boolean.to_js_boolean(true))>
-          <a> (str("Contact")) </a>
-        </Next.Link>
+        <Nav />
         <Heading> (str("Evergreen Roots")) </Heading>
         <About />
         (
