@@ -18,12 +18,11 @@ let make = (~priority=1, ~scale=priority, children) => {
     | 4 => "h4"
     | 5 => "h5"
     | 6 => "h6"
-    | _ => "Unkown"
+    | _ => "h1"
     };
   {
     ...component,
     render: (_self) =>
-      /* Usage of `createDomElement` may be why server doesn't render heading */
       ReasonReact.createDomElement(tag, ~props={"style": sHeading}, children)
   }
 };
