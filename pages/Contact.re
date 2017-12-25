@@ -7,7 +7,7 @@ let make = (_children) => {
   {
     ...component,
     render: (_self) =>
-      <div>
+      <Layout>
         <Next.Head>
           <title> (str("Contact - Evergreen Roots")) </title>
           <meta
@@ -15,8 +15,6 @@ let make = (_children) => {
             content="initial-scale=1.0, width=device-width"
           />
         </Next.Head>
-        <Nav />
-        <Heading> (str("Contact")) </Heading>
         <p>
           (
             str(
@@ -34,7 +32,7 @@ let make = (_children) => {
           />
           <Button _type="submit"> (str("Send Message")) </Button>
         </Form>
-      </div>
+      </Layout>
   }
 };
 

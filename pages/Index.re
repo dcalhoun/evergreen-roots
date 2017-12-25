@@ -30,16 +30,14 @@ let make = (~items: ListingData.items, ~status: string, _children) => {
       ReasonReact.NoUpdate
     },
     render: (self) =>
-      <div>
+      <Layout>
         <Next.Head> <title> (str("Evergreen Roots")) </title> </Next.Head>
-        <Nav />
-        <Heading> (str("Evergreen Roots")) </Heading>
         <About />
         (
           self.state.status == Status.fetching ?
             <Loading /> : <Listings items=self.state.items />
         )
-      </div>
+      </Layout>
   }
 };
 
