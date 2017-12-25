@@ -1,5 +1,14 @@
 let str = ReasonReact.stringToElement;
 
+/* TODO: Add additional API to bs-next */
+module ActiveLink = {
+  let component = ReasonReact.statelessComponent("ActiveLink");
+  let make = (_children) => {
+    ...component,
+    render: (_self) => <div> (str("ActiveLink")) </div>
+  };
+};
+
 let component = ReasonReact.statelessComponent("Nav");
 
 let make = (_children) => {
