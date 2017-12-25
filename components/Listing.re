@@ -3,10 +3,13 @@ let str = ReasonReact.stringToElement;
 let component = ReasonReact.statelessComponent("Listing");
 
 let make = (~item: ListingData.item, _children) => {
-  ...component,
-  render: (_self) =>
-    <article>
-      <h3> (str(item.title)) </h3>
-      <h4> (str(item.price)) </h4>
-    </article>
+  let sPrice = ReactDOMRe.Style.make(~fontFamily="sans-serif", ());
+  {
+    ...component,
+    render: (_self) =>
+      <article>
+        <Heading priority=3> (str(item.title)) </Heading>
+        <span style=sPrice> (str(item.price)) </span>
+      </article>
+  }
 };

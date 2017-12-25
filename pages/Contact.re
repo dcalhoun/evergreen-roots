@@ -19,7 +19,7 @@ let make = (_children) => {
           <a> (str("Home")) </a>
         </Next.Link>
         <span> (str(" | Contact")) </span>
-        <div> (str("Contact")) </div>
+        <Heading> (str("Contact")) </Heading>
         <p>
           (
             str(
@@ -29,8 +29,12 @@ let make = (_children) => {
         </p>
         <Form onSubmit=handleSubmit>
           <TextField name="name" label="Name" />
-          <TextField name="email" label="Email" />
-          <TextArea name="message" label="Message" />
+          <TextField name="email" label="Email" placeholder="you@email.com" />
+          <TextArea
+            name="message"
+            label="Message"
+            placeholder="How may we help?"
+          />
           <Button _type="submit"> (str("Send Message")) </Button>
         </Form>
       </div>

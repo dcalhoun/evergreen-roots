@@ -36,6 +36,8 @@ let make = (~items: ListingData.items, ~status: string, _children) => {
         <Next.Link href="/contact" prefetch=(Js.Boolean.to_js_boolean(true))>
           <a> (str("Contact")) </a>
         </Next.Link>
+        /* Why is server not rendering heading? */
+        <Heading> (str("Evergreen Roots")) </Heading>
         <About />
         (
           self.state.status == Status.fetching ?
