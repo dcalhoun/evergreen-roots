@@ -23,6 +23,7 @@ let make = (~priority=1, ~scale=priority, children) => {
   {
     ...component,
     render: (_self) =>
+      /* Usage of `createDomElement` may be why server doesn't render heading */
       ReasonReact.createDomElement(tag, ~props={"style": sHeading}, children)
   }
 };
