@@ -16,6 +16,7 @@ let make = (~name, ~id=name, ~label=name, ~placeholder="", _children) => {
       ~border="1px solid #ccc",
       ~borderRadius="3px",
       ~boxShadow="none",
+      ~boxSizing="border-box",
       ~fontFamily="sans-serif",
       ~fontSize="1rem",
       ~padding="0.5rem",

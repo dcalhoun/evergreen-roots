@@ -11,6 +11,7 @@ type state = {
 
 let component = ReasonReact.reducerComponent("Index");
 
+/* TODO: Attempt to use dipsatch and state props */
 let make = (~items: ListingData.items, ~status: string, _children) => {
   let loadListings = ({ReasonReact.reduce}) => {
     ListingData.fetch(reduce((payload) => Loaded(payload))) |> ignore;

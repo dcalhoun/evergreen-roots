@@ -7,7 +7,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <body>
-          <Store render={({ store }) => <Main store={store} />} />
+          <Store render={(dispatch, state) => <Main dispatch state />} />
           <NextScript />
         </body>
       </html>
