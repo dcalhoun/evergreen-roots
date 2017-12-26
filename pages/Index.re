@@ -34,11 +34,13 @@ let make = (~items: ListingData.items, ~status: string=Status.idle, _children) =
       <Layout>
         <Next.Head> <title> (str("Evergreen Roots")) </title> </Next.Head>
         <About />
-        Status.(
+        /* TODO: Why can I not open Status and combine with switch? */
+        (
           switch self.state.status {
-          | error => <Error message="Unable to load product listings." />
-          | fetching => <Loading />
-          | _ => <Listings items=self.state.items />
+          | "ERROR" => <Error message="Unable to load product listings." />
+          | "FETCHED" => <Listings items=self.state.items />
+          | "FETCHING"
+          | _ => <Loading />
           }
         )
       </Layout>

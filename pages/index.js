@@ -22,8 +22,8 @@ export default class IndexPage extends Component {
       if (resp.ok) {
         try {
           json = await resp.json();
-          console.log('> ERROR: JSON');
         } catch (error) {
+          console.log('> ERROR: JSON');
           return { ...defaultProps, error, status: status.error };
         }
       } else {
