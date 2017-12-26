@@ -26,6 +26,12 @@ let make = (_children) => {
         <Form onSubmit=handleSubmit>
           <TextField name="name" label="Name" />
           <TextField name="email" label="Email" placeholder="you@email.com" />
+          <Select name="subject" label="Subject">
+            <Select.Option value="Order Status" />
+            <Select.Option value="Custom Order Request" />
+            <Select.Option value="Wholesale Inquiry" />
+            <Select.Option value="Miscellaneous" label="Other" />
+          </Select>
           <TextArea
             name="message"
             label="Message"
