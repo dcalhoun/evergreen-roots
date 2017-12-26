@@ -19,7 +19,7 @@ let make = (_children) => {
         <p style=sBody>
           (
             str(
-              "I love to hear from my customers. Please contact me using this form with any questions or comments. Wholesale inquires are welcomed."
+              "We love to hear from our customers. Please contact us using this form with any questions or comments. Wholesale inquires are welcomed."
             )
           )
         </p>

@@ -12,7 +12,7 @@ type state = {
 let component = ReasonReact.reducerComponent("Index");
 
 /* TODO: Attempt to use dipsatch and state props */
-let make = (~items: ListingData.items, ~status: string, _children) => {
+let make = (~items: ListingData.items, ~status: string=Status.idle, _children) => {
   let loadListings = ({ReasonReact.reduce}) => {
     ListingData.fetch(reduce((payload) => Loaded(payload))) |> ignore;
     reduce((_items) => Loading, items)
@@ -26,17 +26,20 @@ let make = (~items: ListingData.items, ~status: string, _children) => {
       | Loading => ReasonReact.Update({...state, status: Status.fetching})
       },
     didMount: (self) => {
-      Array.length(items) > 0 ?
-        self.reduce((items) => Loaded(items), items) : loadListings(self);
+      status == Status.idle ?
+        loadListings(self) : self.reduce((items) => Loaded(items), items);
       ReasonReact.NoUpdate
     },
     render: (self) =>
       <Layout>
         <Next.Head> <title> (str("Evergreen Roots")) </title> </Next.Head>
         <About />
-        (
-          self.state.status == Status.fetching ?
-            <Loading /> : <Listings items=self.state.items />
+        Status.(
+          switch self.state.status {
+          | error => <Error message="Unable to load product listings." />
+          | fetching => <Loading />
+          | _ => <Listings items=self.state.items />
+          }
         )
       </Layout>
   }
