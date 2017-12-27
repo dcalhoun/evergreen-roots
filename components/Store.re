@@ -1,3 +1,4 @@
+/* TODO: Create render prop component to fetch/load/error. http://bit.ly/2BIHLXC */
 type action =
   | SetListings(ListingData.items);
 
