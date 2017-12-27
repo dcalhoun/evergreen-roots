@@ -3,7 +3,8 @@
 type item = {
   listing_id: int,
   price: string,
-  title: string
+  title: string,
+  url: string
 };
 
 type items = array(item);
@@ -13,7 +14,8 @@ module Decode = {
     Json.Decode.{
       listing_id: json |> field("listing_id", int),
       price: json |> field("price", string),
-      title: json |> field("title", string)
+      title: json |> field("title", string),
+      url: json |> field("url", string)
     };
   let items = (items) => Json.Decode.(items |> array(item));
   let resp = (json) => Json.Decode.(json |> field("results", array(item)));
