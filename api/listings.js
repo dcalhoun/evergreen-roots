@@ -1,6 +1,11 @@
 import fetch from 'isomorphic-unfetch';
 
-// TODO: Clean up error handling
+const emitError = (ctx, err) => {
+  ctx.status = err.status || 500;
+  ctx.body = err.message;
+  ctx.app.emit('error', err, ctx);
+};
+
 export const fetchListings = async ctx => {
   let resp, json;
   try {
@@ -10,9 +15,7 @@ export const fetchListings = async ctx => {
       }`
     );
   } catch (err) {
-    ctx.status = err.status || 500;
-    ctx.body = err.message;
-    ctx.app.emit('error', err, ctx);
+    emitError(ctx, err);
     return;
   }
 
@@ -20,15 +23,11 @@ export const fetchListings = async ctx => {
     try {
       json = await resp.json();
     } catch (err) {
-      ctx.status = err.status || 500;
-      ctx.body = err.message;
-      ctx.app.emit('error', err, ctx);
+      emitError(ctx, err);
       return;
     }
   } else {
-    ctx.status = 500;
-    ctx.body = 'Failure';
-    ctx.app.emit('error', {}, ctx);
+    emitError(ctx, { status: resp.status, message: 'Network failure.' });
     return;
   }
 

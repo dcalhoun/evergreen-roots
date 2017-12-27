@@ -5,29 +5,31 @@ import React, { Component } from 'react';
 import * as status from '../lib/js/utils/Status';
 import { fetchListings } from '../utils/endpoints';
 
+const _buildErrorProps = error => ({
+  error,
+  status: status.error,
+});
+
 export default class IndexPage extends Component {
-  // TODO: Clean up error handling
   static async getInitialProps() {
     const defaultProps = { status: status.idle, items: [], error: {} };
-    console.log('> START');
+
+    // Disable fetch for server render
     if (typeof window === 'undefined') {
       let resp, json;
       try {
         resp = await fetchListings();
-      } catch (error) {
-        console.log('> ERROR: Network');
-        return { ...defaultProps, error, status: status.error };
+      } catch (err) {
+        return { ...defaultProps, ..._buildErrorProps(err) };
       }
 
       if (resp.ok) {
         try {
           json = await resp.json();
-        } catch (error) {
-          console.log('> ERROR: JSON');
-          return { ...defaultProps, error, status: status.error };
+        } catch (err) {
+          return { ...defaultProps, ..._buildErrorProps(err) };
         }
       } else {
-        console.log('> ERROR: Not OK');
         return {
           ...defaultProps,
           error: { message: 'Failure' },
@@ -35,18 +37,14 @@ export default class IndexPage extends Component {
         };
       }
 
-      console.log('> ERROR: None');
       return {
         ...defaultProps,
         status: status.fetched,
         items: json.results,
       };
     }
-    return {
-      ...defaultProps,
-      status: status.idle,
-      items: [],
-    };
+
+    return defaultProps;
   }
 
   render() {
