@@ -33,7 +33,7 @@ let make = (~items: ListingData.items, ~status: string=Status.idle, _children) =
     render: (self) =>
       <Layout>
         <Next.Head> <title> (str("Evergreen Roots")) </title> </Next.Head>
-        <About />
+        <P> (str("Beautiful, functional items sewn and stamped by hand.")) </P>
         /* TODO: Why can I not open Status and combine with switch? */
         (
           switch self.state.status {
