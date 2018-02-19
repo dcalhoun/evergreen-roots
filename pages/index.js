@@ -1,7 +1,6 @@
 import Index from './Index.re';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-// TODO: Update Status.re to export wrap for JS
 import * as status from '../lib/js/utils/Status';
 import { fetchListings } from '../utils/endpoints';
 

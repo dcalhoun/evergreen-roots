@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "bs-fetch": "^0.2.0",
-    "bs-json": "^0.2.4",
+    "bs-json": "^1.0.0",
     "bs-next": "^2.0.0",
     "bs-platform": "^2.1.0",
     "fetch-jsonp": "^1.1.3",

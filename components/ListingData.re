@@ -9,6 +9,14 @@ type item = {
 
 type items = array(item);
 
+type storage;
+
+let sessionStorage: storage = [%bs.raw {| window.sessionStorage |}];
+
+[@bs.send] external setItem : (storage, string, string) => unit = "";
+
+[@bs.send] external getItem : (storage, string) => string = "";
+
 module Decode = {
   let item = (json) =>
     Json.Decode.{
@@ -21,10 +29,32 @@ module Decode = {
   let resp = (json) => Json.Decode.(json |> field("results", array(item)));
 };
 
+let serveCache = (json: Js.Json.t, callback) =>
+  Js.Promise.(
+    resolve(json)
+    |> then_(
+         (json) =>
+           json
+           |> Decode.resp
+           |> (
+             (items) => {
+               callback(items);
+               resolve()
+             }
+           )
+       )
+  );
+
 let fetch = (callback) =>
   Js.Promise.(
     Fetch.fetch(host ++ "/api/listings")
     |> then_(Fetch.Response.json)
+    |> then_(
+         (json) => {
+           setItem(sessionStorage, "listings", Json.stringify(json));
+           resolve(json)
+         }
+       )
     |> then_(
          (json) =>
            json
@@ -38,3 +68,8 @@ let fetch = (callback) =>
        )
     |> ignore /* TODO: Error handling */
   );
+
+let getItems = (callback) => {
+  let json = Json.parseOrRaise(getItem(sessionStorage, "listings"));
+  json === {} ? true : false
+};

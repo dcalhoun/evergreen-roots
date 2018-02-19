@@ -14,7 +14,7 @@ let component = ReasonReact.reducerComponent("Index");
 /* TODO: Attempt to use dipsatch and state props */
 let make = (~items: ListingData.items, ~status: string=Status.idle, _children) => {
   let loadListings = ({ReasonReact.reduce}) => {
-    ListingData.fetch(reduce((payload) => Loaded(payload))) |> ignore;
+    ListingData.getItems(reduce((payload) => Loaded(payload))) |> ignore;
     reduce((_items) => Loading, items)
   };
   {
