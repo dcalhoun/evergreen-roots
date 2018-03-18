@@ -8,7 +8,7 @@ let make = (~priority=1, ~scale=priority, ~tagless=false, children) => {
     ReactDOMRe.Style.make(
       ~fontFamily="sans-serif",
       ~fontSize=List.nth(typeScale, scale - 1),
-      ()
+      (),
     );
   let tag =
     switch (priority, tagless) {
@@ -23,7 +23,11 @@ let make = (~priority=1, ~scale=priority, ~tagless=false, children) => {
     };
   {
     ...component,
-    render: (_self) =>
-      ReasonReact.createDomElement(tag, ~props={"style": sHeading}, children)
-  }
+    render: _self =>
+      ReasonReact.createDomElement(
+        tag,
+        ~props={"style": sHeading},
+        children,
+      ),
+  };
 };

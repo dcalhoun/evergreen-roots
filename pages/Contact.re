@@ -2,11 +2,11 @@ let str = ReasonReact.stringToElement;
 
 let component = ReasonReact.statelessComponent("Contact");
 
-let make = (_children) => {
+let make = _children => {
   let handleSubmit = (_) => Js.log("handleSubmit");
   {
     ...component,
-    render: (_self) =>
+    render: _self =>
       <Layout>
         <Next.Head>
           <title> (str("Contact - Evergreen Roots")) </title>
@@ -18,7 +18,7 @@ let make = (_children) => {
         <P>
           (
             str(
-              "We love to hear from our customers. Please contact us using this form with any questions or comments. Wholesale inquires are welcomed."
+              "We love to hear from our customers. Please contact us using this form with any questions or comments. Wholesale inquires are welcomed.",
             )
           )
         </P>
@@ -38,9 +38,8 @@ let make = (_children) => {
           />
           <Button _type="submit"> (str("Send Message")) </Button>
         </Form>
-      </Layout>
-  }
+      </Layout>,
+  };
 };
 
-let default =
-  ReasonReact.wrapReasonForJs(~component, (_jsProps) => make([||]));
+let default = ReasonReact.wrapReasonForJs(~component, _jsProps => make([||]));

@@ -12,16 +12,16 @@ let make = (~item: ListingData.item, _children) => {
       ~marginBottom="1rem",
       ~padding="0.5rem",
       ~textDecoration="none",
-      ()
+      (),
     );
   let sPrice = ReactDOMRe.Style.make(~fontFamily="sans-serif", ());
   {
     ...component,
-    render: (_self) =>
+    render: _self =>
       <a
         href=item.url style=sListing target="_blank" rel="noopener noreferrer">
         <Heading scale=3 tagless=true> (str(item.title)) </Heading>
         <span style=sPrice> (str("$" ++ item.price)) </span>
-      </a>
-  }
+      </a>,
+  };
 };

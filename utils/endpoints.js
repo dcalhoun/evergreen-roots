@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-unfetch';
 
-export const fetchListings = async () =>
-  fetch(`${process.env.HOST}/api/listings`);
+const apiUrl = process.env.API_URL + ':' + process.env.PORT;
+
+export const fetchListings = async () => fetch(`${apiUrl}/api/listings`);

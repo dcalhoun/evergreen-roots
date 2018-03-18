@@ -1,14 +1,14 @@
 let component = ReasonReact.statelessComponent("Form");
 
 let make = (~onSubmit, children) => {
-  let submit = (event) => {
+  let submit = event => {
     ReactEventRe.Synthetic.preventDefault(event);
     Js.log("submit");
-    onSubmit()
+    onSubmit();
   };
   {
     ...component,
-    render: (_self) =>
-      <form onSubmit=submit> (ReasonReact.arrayToElement(children)) </form>
-  }
+    render: _self =>
+      <form onSubmit=submit> (ReasonReact.arrayToElement(children)) </form>,
+  };
 };
