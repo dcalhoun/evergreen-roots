@@ -51,10 +51,16 @@ let make =
     render: _self =>
       <div style=sContainer>
         <label style=sLabel htmlFor=name> (str(label)) </label>
-        <select id=name name style=sSelect>
-          <option> (str(placeholder)) </option>
-          (ReasonReact.arrayToElement(children))
-        </select>
+        (
+          ReasonReact.createDomElement(
+            "select",
+            ~props={"id": name, "name": name, "style": sSelect},
+            Array.append(
+              [|<Option label=placeholder value="" />|],
+              children,
+            ),
+          )
+        )
       </div>,
   };
 };

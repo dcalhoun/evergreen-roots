@@ -9,6 +9,14 @@ let make = (~onSubmit, children) => {
   {
     ...component,
     render: _self =>
-      <form onSubmit=submit> (ReasonReact.arrayToElement(children)) </form>,
+      <form onSubmit=submit>
+        (
+          ReasonReact.createDomElement(
+            "div",
+            ~props={"className": ""},
+            children,
+          )
+        )
+      </form>,
   };
 };
